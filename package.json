@@ -1,0 +1,21 @@
+{
+  "name": "pruebasplc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node-gyp configure build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsmodbus": "^4.0.6",
+    "net": "^1.0.2",
+    "node-red-contrib-s7": "^3.1.0",
+    "nodemon": "^2.0.19",
+    "nodes7": "^0.3.18"
+  }
+}
