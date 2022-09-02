@@ -1,4 +1,4 @@
-import nodes7 from 'nodes7'; // This is the package name, if the repository is cloned you may need to require 'nodeS7' with uppercase S
+import nodes7 from 'nodes7';
 var conn = new nodes7;
 var doneReading = false;
 var doneWriting = false;
@@ -19,29 +19,28 @@ var variables = {
 
 conn.initiateConnection({ port: 102, host: '10.106.8.215', rack: 0, slot: 1, debug: false }, connected); // slot 2 for 300/400, slot 1 for 1200/1500, change debug to true to get more info
 // conn.initiateConnection({port: 102, host: '192.168.0.2', localTSAP: 0x0100, remoteTSAP: 0x0200, timeout: 8000, doNotOptimize: true}, connected);
-// local and remote TSAP can also be directly specified instead. The timeout option specifies the TCP timeout.
+
 
 
 function connected(err) {
   if (typeof(err) !== "undefined") {
-    // We have an error. Maybe the PLC is not reachable.
     console.log(err);
     process.exit();
   }
-  //conn.setTranslationCB(function(tag) { return variables[tag]; }); // This sets the "translation" to allow us to work with object names
-  //conn.addItems(['TEST1', 'TEST4']);
-  //conn.addItems('TEST6');
-  //conn.removeItems(['TEST2', 'TEST3']); // We could do this.
-  //conn.writeItems(['TEST5', 'TEST6'], [ 867.5309, 9 ], valuesWritten); // You can write an array of items as well.
-  //conn.writeItems('TEST7', [666, 777], valuesWritten); // You can write a single array item too.
-  //conn.writeItems('TEST3', true, valuesWritten); // This writes a single boolean item (one bit) to true
-  conn.readAllItems(valuesReady);
+  //Métodos de lectura/escritura en bloque de PLC
+      //conn.setTranslationCB(function(tag) { return variables[tag]; }); // This sets the "translation" to allow us to work with object names
+      //conn.addItems(['TEST1', 'TEST4']);
+      //conn.addItems('TEST6');
+      //conn.removeItems(['TEST2', 'TEST3']); // We could do this.
+      //conn.writeItems(['TEST5', 'TEST6'], [ 867.5309, 9 ], valuesWritten); // You can write an array of items as well.
+      //conn.writeItems('TEST7', [666, 777], valuesWritten); // You can write a single array item too.
+      //conn.writeItems('TEST3', true, valuesWritten); // This writes a single boolean item (one bit) to true
+      //conn.readAllItems(valuesReady);
 };
 
 
 function valuesReady(anythingBad, values) {
   if (anythingBad) { console.log("SOMETHING WENT WRONG READING VALUES!!!!"); }
-  values= 100.5
   console.log('Valores: ', values);
   doneReading = true;
   if (doneWriting) { process.exit();}
